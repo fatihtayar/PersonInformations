@@ -1,0 +1,26 @@
+<form [formGroup]="personAddForm" (ngSubmit)="addPerson()">
+  <div class="form-group">
+      <input type="text" id="name" name="name" placeholder="Adınızı giriniz" formControlName="name" class="form-control">
+      <div *ngIf="personAddForm.get('name').hasError('required')&&personAddForm.get('name').dirty"
+          class="alert alert-danger">Adınızı giriniz !</div>
+  </div>
+  <div class="form-group">
+      <input type="text" id="surName" name="surName" placeholder="Soyadınızı giriniz" formControlName="surName" class="form-control">
+      <div *ngIf="personAddForm.get('surName').hasError('required')&&personAddForm.get('surName').dirty"
+          class="alert alert-danger">Soyadınızı giriniz !</div>
+  </div>
+  <div class="form-group">
+      <input type="text" id="email" name="imageUrl" placeholder="E-mail adresinizi giriniz" formControlName="email" class="form-control">
+      <div *ngIf="personAddForm.get('email').hasError('required')&&personAddForm.get('email').dirty"
+          class="alert alert-danger">E-mail adresinizi giriniz !</div>
+  </div> 
+  <div class="form-group">    
+          <select id="categoryId" name="categoryId" formControlName="categoryId" class="form-control">
+            <option value="" selected disabled>Kategorinizi seçiniz</option>  
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
+          <div *ngIf="personAddForm.get('categoryId').hasError('required')&&personAddForm.get('categoryId').touched"
+               class="alert alert-danger">Kategori gereklidir</div>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="personAddForm.invalid">Ürün Ekle</button>
+</form>
